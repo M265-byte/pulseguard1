@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Health Monitor</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f6f8;
+            text-align: center;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            display: inline-block;
+            width: 200px;
+            border-radius: 10px;
+        }
+
+        .alert {
+            margin: 20px;
+            padding: 15px;
+            background-color: lightgreen;
+            border-radius: 8px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Health Monitoring Dashboard</h1>
+</header>
+
+<div class="card">
+    <h2>Heart Rate</h2>
+    <p id="heartRate">--</p>
+</div>
+
+<div class="card">
+    <h2>Temperature</h2>
+    <p id="temperature">--</p>
+</div>
+
+<div class="card">
+    <h2>Activity</h2>
+    <p id="activity">--</p>
+</div>
+
+<div class="alert" id="alertBox">
+    All normal
+</div>
+
+<button onclick="updateData()">Simulate Data</button>
+
+<script>
+function updateData() {
+    let hr = Math.floor(Math.random() * (120 - 50) + 50);
+    let temp = (Math.random() * (39 - 35) + 35).toFixed(1);
+    let act = Math.floor(Math.random() * 10000);
+
+    document.getElementById("heartRate").innerText = hr + " bpm";
+    document.getElementById("temperature").innerText = temp + " °C";
+    document.getElementById("activity").innerText = act + " steps";
+
+    let alertBox = document.getElementById("alertBox");
+
+    if (hr > 100 || temp > 37.5) {
+        alertBox.innerText = "Warning: abnormal readings!";
+        alertBox.style.backgroundColor = "red";
+        alertBox.style.color = "white";
+    } else {
+        alertBox.innerText = "All readings normal";
+        alertBox.style.backgroundColor = "lightgreen";
+        alertBox.style.color = "black";
+    }
+}
+</script>
+
+</body>
+</html>
